@@ -47,7 +47,7 @@ const createNewUser = asyncHandler(async (req, res) => {
     const user = await User.create(userObject)
 
     if (user) { //created 
-        res.status(201).json({ message: `New user ${username} created` })
+        res.status(201).json({ message: `New user '${username}' created` })
     } else {
         res.status(400).json({ message: 'Invalid user data received' })
     }
@@ -111,7 +111,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     if (!user) {
         return res.status(400).json({ message: "User not found" });
     }
-    const result = user.deleteOne();
+    user.deleteOne();
 
     const reply = `Username ${user.username} with ID ${user.id} deleted!`;
     res.json(reply);
